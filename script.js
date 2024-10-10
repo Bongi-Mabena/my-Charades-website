@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nextQuestionButton.classList.remove('hidden');
 
 
-      scores[currentPlayerIndex] += 1; // Add point to the current player
+      //scores[currentPlayerIndex] += 1; // Add point to the current player
       updateScoreboard(); // Update scoreboard after scoring
 
       // Rotate to the next player
@@ -147,11 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const beta = event.beta; // Detect phone tilting forward or backward
 
     if (beta >= 80) { // Adjust the range as needed
-      if (orientationTimeout) {
-        clearTimeout(orientationTimeout);
-      }
-      orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
-    }
+    // Tilted forward, add point and move to next question
+    scores[currentPlayerIndex] += 1; // Add point to the current player
+    //updateScoreboard(); // Update scoreboard after scoring
+    displayQuestion(); // Move to next question
+  } else if (beta <= -80) { // Adjust the range as needed
+    // Tilted backward, move to next question without adding point
+    displayQuestion(); // Move to next question
+  }
   });
 });
 
