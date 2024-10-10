@@ -21,12 +21,12 @@ document.getElementById('start-game-btn')?.addEventListener('click', function() 
   const players = Array.from(playerNameInputs).map(input => input.value.trim()).filter(name => name !== '');
   
   if (players.length > 0 && players.length <= 3) {
-    localStorage.setItem('players', JSON.stringify(players)); // Save player names to local storage
-    localStorage.setItem('currentPlayerIndex', 0); // Initialize current player index
-    localStorage.setItem('scores', JSON.stringify(new Array(players.length).fill(0))); // Initialize scores
-    window.location.href = 'topic_selection.html'; // Redirect to topic selection
+    localStorage.setItem('players', JSON.stringify(players));
+    localStorage.setItem('currentPlayerIndex', 0);
+    localStorage.setItem('scores', JSON.stringify(new Array(players.length).fill(0)));
+    window.location.href = 'topic_selection.html';
   } else {
-    alert('Please enter 1 to 3 player names.'); // Alert for empty or excessive input
+    alert('Please enter 1 to 3 player names.');
   }
 });
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load player names and scores from local storage
   const players = JSON.parse(localStorage.getItem('players')) || [];
-  let scores = JSON.parse(localStorage.getItem('scores')) || new Array(players.length).fill(0); // Initialize scores
+  let scores = JSON.parse(localStorage.getItem('scores')) || new Array(players.length).fill(0); //  scores
 
   // Display players and scores
   function updateScoreboard() {
@@ -125,12 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (images[currentTopic]) {
       const topicImages = images[currentTopic];
       questionImage.src = topicImages[currentQuestionIndex];
-      questionImage.classList.remove('hidden'); // Make the image visible
-      questionImage.alt = `Image related to ${currentTopic}`; // Set alt text for accessibility
-      currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length; // Update index cyclically
-      nextQuestionButton.classList.remove('hidden'); // Show the button to get the next question
+      questionImage.classList.remove('hidden');
+      questionImage.alt = `Image related to ${currentTopic}`;
+      currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length;
+      nextQuestionButton.classList.remove('hidden');
 
-      // Increase score for the current player (dummy implementation, customize logic as needed)
+
       scores[currentPlayerIndex] += 1; // Add point to the current player
       updateScoreboard(); // Update scoreboard after scoring
 
@@ -140,12 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let orientationTimeout = null;
+
   // Detect device orientation for "face down" motion to trigger next question
   window.addEventListener('deviceorientation', (event) => {
     const beta = event.beta; // Detect phone tilting forward or backward
 
-    if (beta >= 90) { // When the device is face-down (or close to face-down)
-      displayQuestion(); // Automatically trigger next question
+    if (beta >= 80 && beta <= 100) { // Adjust the range as needed
+      if (orientationTimeout) {
+        clearTimeout(orientationTimeout);
+      }
+      orientationTimeout = setTimeout(displayQuestion, 500); // Delay execution by 500ms
     }
   });
 });
