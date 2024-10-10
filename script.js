@@ -149,8 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (beta >= 90) { // Adjust the range as needed
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
+        displayQuestion();
       }
-      orientationTimeout = setTimeout(displayQuestion, 70); // Delay execution by 500ms
+      orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
     }
   });
 });
