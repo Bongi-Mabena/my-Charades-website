@@ -129,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
       questionImage.alt = `Image related to ${currentTopic}`;
       currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length;
       nextQuestionButton.classList.remove('hidden');
+
+
       scores[currentPlayerIndex] += 1; // Add point to the current player
       updateScoreboard(); // Update scoreboard after scoring
 
@@ -147,11 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (beta >= 80) { // Adjust the range as needed
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
-        //displayQuestion();
       }
       orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
     }
-    
   });
 });
 
