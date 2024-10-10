@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('deviceorientation', (event) => {
     const beta = event.beta; // Detect phone tilting forward or backward
 
-    if (beta >= 70) { // Adjust the range as needed
+    if (beta >= 80) { // Adjust the range as needed
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
         displayQuestion();
