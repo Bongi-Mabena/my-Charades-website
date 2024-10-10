@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
       questionImage.alt = `Image related to ${currentTopic}`;
       currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length;
       nextQuestionButton.classList.remove('hidden');
-      //scores[currentPlayerIndex] += 1; // Add point to the current player
-      //updateScoreboard(); // Update scoreboard after scoring
+      scores[currentPlayerIndex] += 1; // Add point to the current player
+      updateScoreboard(); // Update scoreboard after scoring
 
       // Rotate to the next player
       currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // Move to the next player
@@ -148,8 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
         displayQuestion();
-        scores[currentPlayerIndex] += 1;
-        updateScoreboard();
       }
       orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
     }
