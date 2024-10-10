@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver's License Charades - Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="images/logo/logo.jpg" alt="Driver's License Charades Logo" class="logo">
+    <h1>Driver's License Charades</h1>
+  </header>
+
+  <section id="game-section">
+    <div class="sidebar">
+      <h3>Topics</h3>
+      <ul id="topics-list">
+        <li data-topic="traffic-signs">Traffic Signs</li>
+        <li data-topic="rules">Traffic Rules</li>
+        <li data-topic="safety">Safety Measures</li>
+      </ul>
+      <button id="logout-btn">Logout</button>
+    </div>
+
+    <div class="game-content">
+      <h2 id="current-topic">Current Topic</h2>
+      <div id="question-container">
+        <img id="question-image" src="" alt="Question image" class="hidden">
+        <p id="question-text">Question goes here</p>
+      </div>
+      <button id="next-question">Next Question</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
