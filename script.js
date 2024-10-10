@@ -141,9 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let orientationTimeout = null;
-
+  import Orientation from 'orientation.js';
+  const orientation = new Orientation();
   // Detect device orientation for "face down" motion to trigger next question
-  window.addEventListener('deviceorientation', (event) => {
+  //window.addEventListener('deviceorientation', (event) => {
+  orientation.on('change', (event) => {
     const beta = event.beta; // Detect phone tilting forward or backward
 
     if (beta >= 80) { // Adjust the range as needed
