@@ -19,7 +19,7 @@ document.getElementById('login-btn')?.addEventListener('click', function() {
 document.getElementById('start-game-btn')?.addEventListener('click', function() {
   const playerNameInputs = document.querySelectorAll('.player-name-input');
   const players = Array.from(playerNameInputs).map(input => input.value.trim()).filter(name => name !== '');
-  
+
   if (players.length > 0 && players.length <= 3) {
     localStorage.setItem('players', JSON.stringify(players));
     localStorage.setItem('currentPlayerIndex', 0);
@@ -141,11 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let orientationTimeout = null;
-  import Orientation from 'orientation.js';
-  const orientation = new Orientation();
+
   // Detect device orientation for "face down" motion to trigger next question
-  //window.addEventListener('deviceorientation', (event) => {
-  orientation.on('change', (event) => {
+  window.addEventListener('deviceorientation', (event) => {
     const beta = event.beta; // Detect phone tilting forward or backward
 
     if (beta >= 80) { // Adjust the range as needed
