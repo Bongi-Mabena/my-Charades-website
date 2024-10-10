@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
       }
-      orientationTimeout = setTimeout(displayQuestion, 1000); // Delay execution by 500ms
+      orientationTimeout = setTimeout(displayQuestion, 70); // Delay execution by 500ms
     }
   });
 });
