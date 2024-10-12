@@ -130,12 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
       currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length;
       nextQuestionButton.classList.remove('hidden');
 
-
-      scores[currentPlayerIndex] += 1; // Add point to the current player
-      updateScoreboard(); // Update scoreboard after scoring
-
       // Rotate to the next player
-      currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // Move to the next player
+      currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
       localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save current player index
     }
   }
@@ -145,12 +141,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Detect device orientation for "face down" motion to trigger next question
   window.addEventListener('deviceorientation', (event) => {
     const beta = event.beta; // Detect phone tilting forward or backward
+    const gamma = event.gamma; // Detect phone tilting left or right
 
-    if (beta >= 80) { // Adjust the range as needed
+    if (beta >= 80) { // Face down, award point and go to next player
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
       }
-      orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
+      orientationTimeout = setTimeout(() => {
+        scores[currentPlayerIndex] += 1; // Award point to current player
+        updateScoreboard();
+        displayQuestion(); // Move to next question
+      }, 750); // 750ms delay to avoid accidental triggers
+    } else if (beta <= -70 || (gamma > 45 || gamma < -45)) { // Face up or tilted, skip to next player
+      if (orientationTimeout) {
+        clearTimeout(orientationTimeout);
+      }
+      orientationTimeout = setTimeout(() => {
+        displayQuestion(); // Move to next question without awarding points
+      }, 750); // 750ms delay to avoid accidental triggers
     }
   });
 });
