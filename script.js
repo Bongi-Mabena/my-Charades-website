@@ -144,20 +144,26 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('deviceorientation', (event) => {
     const beta = event.beta; // Detect phone tilting forward or backward
 
-    if (beta >= 80) { // Adjust the range as needed
+    if (beta >= 80) { 
+      // Tilted forward; trigger scoring and next question
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
-        scores[currentPlayerIndex] += 1; // Add point to the current player
+      }
+      orientationTimeout = setTimeout(() => {
+        scores[currentPlayerIndex] += 1; // Add point to current player
         updateScoreboard(); // Update scoreboard after scoring
-
-      }
-      orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
-    } else(beta <= -80) {
-      if(orientationTimeout) {
+        displayQuestion(); // Load next question
+      }, 750); // Delay of 750ms
+  
+    } else if (beta <= -80) { 
+      // Tilted backward; reset or trigger something else if desired
+      if (orientationTimeout) {
         clearTimeout(orientationTimeout);
-        updateScoreboard();
       }
-      orientationTimeout= setTimeout(displayQuestion, 750);
+      orientationTimeout = setTimeout(() => {
+        updateScoreboard(); // Just update the scoreboard or another action
+        displayQuestion(); // Load next question if needed
+      }, 750);
     }
   });
 });
