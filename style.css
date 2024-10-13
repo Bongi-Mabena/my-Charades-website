@@ -1,22 +1,14 @@
-/* Global Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* General Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
   background: url('flag.png') no-repeat center center fixed;
+  /* Assuming flag.png is in the same directory as style.css */
   background-size: cover;
   background-blend-mode: lighten;
 }
 
-.hidden {
-  display: none;
-}
-
-/* Header */
 header {
   background-color: #003366; /* Dark Blue */
   color: #FFD700; /* Gold */
@@ -26,23 +18,26 @@ header {
 }
 
 .logo {
-  width: 50px; /* Reduced size for mobile */
+  width: 60px;
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 20px;
+  top: 20px;
 }
 
 h1 {
   margin: 0;
-  font-size: 1.8em;
+  font-size: 2em;
   font-weight: bold;
-  word-wrap: break-word; /* Ensure long text wraps */
+}
+
+.hidden {
+  display: none;
 }
 
 /* Login Section */
 #login-section {
   max-width: 400px;
-  margin: 60px auto;
+  margin: 80px auto;
   padding: 30px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
@@ -53,7 +48,6 @@ h1 {
 #login-section h2 {
   color: #003366;
   margin-bottom: 20px;
-  font-size: 1.5em;
 }
 
 #login-form input {
@@ -84,7 +78,7 @@ h1 {
 /* Player Setup Section */
 #player-setup-section {
   max-width: 400px;
-  margin: 60px auto;
+  margin: 80px auto;
   padding: 30px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
@@ -95,7 +89,6 @@ h1 {
 #player-setup-section h2 {
   color: #003366;
   margin-bottom: 20px;
-  font-size: 1.5em;
 }
 
 #player-setup-section div {
@@ -105,7 +98,6 @@ h1 {
 #player-setup-section label {
   display: block;
   margin-bottom: 5px;
-  font-size: 1em;
 }
 
 #player-setup-section input[type="number"] {
@@ -116,9 +108,13 @@ h1 {
   font-size: 1em;
 }
 
+#player-names {
+  /* Styles for the player name input fields will go here */
+}
+
 #start-game-btn {
   padding: 12px 24px;
-  background: #28A745; /* Green */
+  background: #28A745;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -134,23 +130,22 @@ h1 {
 /* Game Section */
 #game-section {
   display: flex;
-  flex-direction: column;
   height: calc(100vh - 80px); /* Adjusted for header height */
 }
 
 .sidebar {
-  width: 100%; /* Sidebar occupies full width in mobile */
+  width: 220px;
   background: rgba(0, 51, 102, 0.9); /* Semi-transparent Dark Blue */
   color: #FFD700; /* Gold */
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
-  position: relative;
-  text-align: center;
+  position: relative; /* To position the logout button */
 }
 
 .sidebar h3 {
   margin-top: 0;
+  text-align: center;
   font-size: 1.5em;
   border-bottom: 2px solid #FFD700;
   padding-bottom: 10px;
@@ -171,7 +166,6 @@ h1 {
   transition: background 0.3s, transform 0.3s;
   text-align: center;
   font-weight: bold;
-  word-wrap: break-word; /* Ensure long text wraps */
 }
 
 .sidebar ul li:hover {
@@ -180,7 +174,7 @@ h1 {
 }
 
 #logout-btn {
-  position: relative;
+  position: absolute;
   bottom: 20px;
   width: 100%;
   margin-top: 30px;
@@ -191,7 +185,6 @@ h1 {
   cursor: pointer;
   border-radius: 8px;
   font-size: 1em;
-  word-wrap: break-word; /* Ensure long text wraps */
   transition: background 0.3s;
 }
 
@@ -201,36 +194,35 @@ h1 {
 
 .game-content {
   flex: 1;
-  padding: 20px;
+  padding: 40px;
   text-align: center;
   background: rgba(255, 255, 255, 0.8);
+  position: relative;
   overflow-y: auto;
 }
 
 #current-topic {
   color: #003366;
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  word-wrap: break-word;
+  font-size: 1.8em;
+  margin-bottom: 30px;
 }
 
 #question-container {
-  margin-top: 10px;
-  min-height: 150px;
+  margin-top: 20px;
+  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 #question-container p {
-  font-size: 1.2em;
+  font-size: 1.5em;
   color: #333;
-  word-wrap: break-word;
 }
 
 #next-question {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 30px;
+  padding: 12px 24px;
   background: #28A745; /* Green */
   color: #fff;
   border: none;
@@ -298,93 +290,53 @@ h1 {
 #question-image {
   width: 100%;
   height: auto;
-  max-height: 200px; /* Reduced size for better fit */
+  max-height: 300px;
   border-radius: 8px;
   margin-bottom: 20px;
+}
+
+/* Updated Image Scaling for Mobile */
+@media (max-width: 768px) {
+  #question-image {
+    max-height: 200px; /* Reduced size for better fit on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  #question-image {
+    max-height: 150px; /* Further reduced for smaller screens */
+  }
 }
 
 #question-text {
   font-size: 1.5em;
   color: #333;
-  word-wrap: break-word;
 }
 
-/* Media Queries */
-
-/* Small screens (max-width: 480px) */
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.5em;
-  }
-
-  #login-section,
-  #player-setup-section {
-    max-width: 100%;
-    padding: 20px;
-    margin: 40px auto;
-  }
-
-  #login-form input,
-  #login-form button {
-    font-size: 0.9em;
-  }
-
+/* Responsive Design */
+@media (max-width: 768px) {
   #game-section {
     flex-direction: column;
   }
 
+  .sidebar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sidebar ul li {
+    margin-bottom: 0;
+    margin: 5px;
+  }
+
   .game-content {
-    padding: 15px;
-  }
-
-  #next-question {
-    padding: 8px 16px;
-  }
-
-  #question-image {
-    max-height: 150px; /* Reduced for smaller screens */
-  }
-}
-
-/* Medium screens (max-width: 768px) */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 1.8em;
-  }
-
-  #login-section,
-  #player-setup-section {
-    max-width: 90%;
-    padding: 25px;
-    margin: 50px auto;
-  }
-
-  #login-form input,
-  #login-form button {
-    font-size: 1em;
-  }
-
-  #game-section {
-    flex-direction: row;
-  }
-
-  #question-image {
-    max-height: 250px;
-  }
-}
-
-/* Large screens (min-width: 1024px) */
-@media (min-width: 1024px) {
-  header h1 {
-    font-size: 2em;
-  }
-
-  #login-section,
-  #player-setup-section {
-    max-width: 450px;
-  }
-
-  #question-image {
-    max-height: 300px; /* Slightly larger for desktops */
+    padding: 20px;
   }
 }
