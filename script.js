@@ -131,9 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nextQuestionButton.classList.remove('hidden');
 
 
-      scores[currentPlayerIndex] += 1; // Add point to the current player
-      updateScoreboard(); // Update scoreboard after scoring
-
+      
       // Rotate to the next player
       currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // Move to the next player
       localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save current player index
@@ -149,8 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (beta >= 80) { // Adjust the range as needed
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
+        scores[currentPlayerIndex] += 1; // Add point to the current player
+        updateScoreboard(); // Update scoreboard after scoring
+
       }
       orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
+    } else(beta <= -80) {
+      if(orientationTimeout) {
+        clearTimeout(orientationTimeout);
+        updateScoreboard();
+      }
+      orientationTimeout= setTimeout(displayQuestion, 750);
     }
   });
 });
