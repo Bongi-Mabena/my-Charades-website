@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length;
       nextQuestionButton.classList.remove('hidden');
 
+
       scores[currentPlayerIndex] += 1; // Add point to the current player
       updateScoreboard(); // Update scoreboard after scoring
 
