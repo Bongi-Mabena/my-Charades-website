@@ -4,14 +4,13 @@ body {
   margin: 0;
   padding: 0;
   background: url('flag.png') no-repeat center center fixed;
-  /* Assuming flag.png is in the same directory as style.css */
   background-size: cover;
   background-blend-mode: lighten;
 }
 
 header {
-  background-color: #003366; /* Dark Blue */
-  color: #FFD700; /* Gold */
+  background-color: #003366;
+  color: #FFD700;
   padding: 20px;
   text-align: center;
   position: relative;
@@ -62,8 +61,8 @@ h1 {
 #login-form button {
   width: 95%;
   padding: 12px;
-  background: #FFD700; /* Gold */
-  color: #003366; /* Dark Blue */
+  background: #FFD700;
+  color: #003366;
   border: none;
   cursor: pointer;
   border-radius: 8px;
@@ -130,17 +129,17 @@ h1 {
 /* Game Section */
 #game-section {
   display: flex;
-  height: calc(100vh - 80px); /* Adjusted for header height */
+  height: calc(100vh - 80px);
 }
 
 .sidebar {
   width: 220px;
-  background: rgba(0, 51, 102, 0.9); /* Semi-transparent Dark Blue */
-  color: #FFD700; /* Gold */
+  background: rgba(0, 51, 102, 0.9);
+  color: #FFD700;
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
-  position: relative; /* To position the logout button */
+  position: relative;
 }
 
 .sidebar h3 {
@@ -160,7 +159,7 @@ h1 {
 .sidebar ul li {
   padding: 12px;
   margin-bottom: 10px;
-  background: #003366; /* Dark Blue */
+  background: #003366;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
@@ -179,7 +178,7 @@ h1 {
   width: 100%;
   margin-top: 30px;
   padding: 12px;
-  background: #B22222; /* Firebrick Red */
+  background: #B22222;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -223,7 +222,7 @@ h1 {
 #next-question {
   margin-top: 30px;
   padding: 12px 24px;
-  background: #28A745; /* Green */
+  background: #28A745;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -293,19 +292,6 @@ h1 {
   max-height: 300px;
   border-radius: 8px;
   margin-bottom: 20px;
-}
-
-/* Updated Image Scaling for Mobile */
-@media (max-width: 768px) {
-  #question-image {
-    max-height: 200px; /* Reduced size for better fit on mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  #question-image {
-    max-height: 150px; /* Further reduced for smaller screens */
-  }
 }
 
 #question-text {
