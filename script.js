@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayQuestion(); // Load the next question
       }, 750); // Delay of 750ms
   
-    } else if (beta <= -80) { 
+    } else if (beta <= -40) { 
       // Tilted backward; skip question without adding points
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
