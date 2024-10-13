@@ -1,12 +1,14 @@
+/* Global Styles */
 
-
-/* General Styles */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: url('flag.png') no-repeat center center fixed;
-  /* Assuming flag.png is in the same directory as style.css */
   background-size: cover;
   background-blend-mode: lighten;
 }
@@ -37,6 +39,7 @@ h1 {
 }
 
 /* Login Section */
+
 #login-section {
   max-width: 400px;
   margin: 80px auto;
@@ -50,6 +53,7 @@ h1 {
 #login-section h2 {
   color: #003366;
   margin-bottom: 20px;
+  font-size: 1.5em;
 }
 
 #login-form input {
@@ -78,6 +82,7 @@ h1 {
 }
 
 /* Player Setup Section */
+
 #player-setup-section {
   max-width: 400px;
   margin: 80px auto;
@@ -91,6 +96,7 @@ h1 {
 #player-setup-section h2 {
   color: #003366;
   margin-bottom: 20px;
+  font-size: 1.5em;
 }
 
 #player-setup-section div {
@@ -100,6 +106,7 @@ h1 {
 #player-setup-section label {
   display: block;
   margin-bottom: 5px;
+  font-size: 1em;
 }
 
 #player-setup-section input[type="number"] {
@@ -110,13 +117,9 @@ h1 {
   font-size: 1em;
 }
 
-#player-names {
-  /* Styles for the player name input fields will go here */
-}
-
 #start-game-btn {
   padding: 12px 24px;
-  background: #28A745;
+  background: #28A745; /* Green */
   color: #fff;
   border: none;
   cursor: pointer;
@@ -130,6 +133,7 @@ h1 {
 }
 
 /* Game Section */
+
 #game-section {
   display: flex;
   height: calc(100vh - 80px); /* Adjusted for header height */
@@ -165,167 +169,99 @@ h1 {
   background: #003366; /* Dark Blue */
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-  text-align: center;
-  font-weight: bold;
+  transition: background 0. 3s;
 }
 
 .sidebar ul li:hover {
-  background: #0055A4;
-  transform: scale(1.05);
+  background: #002F5F;
 }
 
-#logout-btn {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  margin-top: 30px;
-  padding: 12px;
-  background: #B22222; /* Firebrick Red */
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: background 0.3s;
+.sidebar ul li a {
+  color: #FFD700; /* Gold */
+  text-decoration: none;
 }
 
-#logout-btn:hover {
-  background: #A52A2A;
+.sidebar ul li a:hover {
+  color: #FFC300;
 }
 
 .game-content {
   flex: 1;
-  padding: 40px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  position: relative;
+  padding: 20px;
   overflow-y: auto;
 }
 
-#current-topic {
-  color: #003366;
-  font-size: 1.8em;
-  margin-bottom: 30px;
-}
-
-#question-container {
-  margin-top: 20px;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#question-container p {
+.game-content h2 {
+  margin-top: 0;
   font-size: 1.5em;
-  color: #333;
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 10px;
 }
 
-#next-question {
-  margin-top: 30px;
-  padding: 12px 24px;
-  background: #28A745; /* Green */
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
+.game-content p {
   font-size: 1em;
-  transition: background 0.3s;
-}
-
-#next-question:hover {
-  background: #218838;
-}
-
-/* Modal Styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  position: relative;
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  border-radius: 12px;
-  animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.close-button {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.close-button:hover {
-  color: #FF0000;
-}
-
-#question-image {
-  width: 100%;
-  height: auto;
-  max-height: 300px;
-  border-radius: 8px;
   margin-bottom: 20px;
 }
 
-#question-text {
-  font-size: 1.5em;
-  color: #333;
+.game-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  #game-section {
-    flex-direction: column;
-  }
+/* Media Queries */
 
+/* Small screens (max-width: 480px) */
+@media (max-width: 480px) {
+  #login-section {
+    max-width: 300px;
+  }
+  #player-setup-section {
+    max-width: 300px;
+  }
   .sidebar {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
+    max-width: none;
   }
-
-  .sidebar ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .sidebar ul li {
-    margin-bottom: 0;
-    margin: 5px;
-  }
-
   .game-content {
-    padding: 20px;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Medium screens (max-width: 768px) */
+@media (max-width: 768px) {
+  #login-section {
+    max-width: 350px;
+  }
+  #player-setup-section {
+    max-width: 350px;
+  }
+  .sidebar {
+    width: 100%;
+    max-width: 180px;
+  }
+  .game-content {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* Large screens (min-width: 1024px) */
+@media (min-width: 1024px) {
+  #login-section {
+    max-width: 400px;
+  }
+  #player-setup-section {
+    max-width: 400px;
+  }
+  .sidebar {
+    width: 220px;
+  }
+  .game-content {
+    width: 600px;
   }
 }
