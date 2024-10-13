@@ -328,4 +328,33 @@ h1 {
   .game-content {
     padding: 20px;
   }
+  img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+  /* Small screens (max-width: 480px) */
+@media (max-width: 480px) {
+  #game-section { flex-direction: column; }
+  .sidebar { width: 100%; max-width: none; }
+  .game-content { width: 100%; max-width: none; }
+  #question-image { width: 100%; height: auto; max-height: 200px; }
+}
+
+/* Medium screens (max-width: 768px) */
+@media (max-width: 768px) {
+  #game-section { flex-direction: column; }
+  .sidebar { width: 100%; max-width: 180px; }
+  .game-content { width: 100%; max-width: 400px; }
+  #question-image { width: 100%; height: auto; max-height: 250px; }
+}
+
+/* Large screens (min-width: 1024px) */
+@media (min-width: 1024px) {
+  #game-section { flex-direction: row; }
+  .sidebar { width: 220px; }
+  .game-content { width: 600px; }
+  #question-image { width: 100%; height: auto; max-height: 300px; }
+}
 }
