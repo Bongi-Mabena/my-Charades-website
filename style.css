@@ -177,15 +177,15 @@ h1 {
 
 #logout-btn {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
   width: 100%;
   margin-top: 30px;
-  padding: 12px;
+  padding: 18px;
   background: #B22222; /* Firebrick Red */
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1em;
   transition: background 0.3s;
 }
@@ -290,7 +290,7 @@ h1 {
 }
 
 #question-image {
-  width: 100%;
+  width: 80%;
   height: auto;
   max-height: 300px;
   border-radius: 8px;
