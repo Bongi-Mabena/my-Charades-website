@@ -26,22 +26,23 @@ header {
 }
 
 .logo {
-  width: 60px;
+  width: 50px; /* Reduced size for mobile */
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 10px;
+  top: 10px;
 }
 
 h1 {
   margin: 0;
-  font-size: 2em;
+  font-size: 1.8em;
   font-weight: bold;
+  word-wrap: break-word; /* Ensure long text wraps */
 }
 
 /* Login Section */
 #login-section {
   max-width: 400px;
-  margin: 80px auto;
+  margin: 60px auto;
   padding: 30px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
@@ -83,7 +84,7 @@ h1 {
 /* Player Setup Section */
 #player-setup-section {
   max-width: 400px;
-  margin: 80px auto;
+  margin: 60px auto;
   padding: 30px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
@@ -170,6 +171,7 @@ h1 {
   transition: background 0.3s, transform 0.3s;
   text-align: center;
   font-weight: bold;
+  word-wrap: break-word; /* Ensure long text wraps */
 }
 
 .sidebar ul li:hover {
@@ -189,6 +191,7 @@ h1 {
   cursor: pointer;
   border-radius: 8px;
   font-size: 1em;
+  word-wrap: break-word; /* Ensure long text wraps */
   transition: background 0.3s;
 }
 
@@ -208,6 +211,7 @@ h1 {
   color: #003366;
   font-size: 1.5em;
   margin-bottom: 20px;
+  word-wrap: break-word;
 }
 
 #question-container {
@@ -221,6 +225,7 @@ h1 {
 #question-container p {
   font-size: 1.2em;
   color: #333;
+  word-wrap: break-word;
 }
 
 #next-question {
@@ -293,7 +298,7 @@ h1 {
 #question-image {
   width: 100%;
   height: auto;
-  max-height: 300px;
+  max-height: 200px; /* Reduced size for better fit */
   border-radius: 8px;
   margin-bottom: 20px;
 }
@@ -301,6 +306,7 @@ h1 {
 #question-text {
   font-size: 1.5em;
   color: #333;
+  word-wrap: break-word;
 }
 
 /* Media Queries */
@@ -333,15 +339,10 @@ h1 {
 
   #next-question {
     padding: 8px 16px;
-    font-size: 0.9em;
   }
 
-  #current-topic {
-    font-size: 1.2em;
-  }
-
-  #question-container p {
-    font-size: 1em;
+  #question-image {
+    max-height: 150px; /* Reduced for smaller screens */
   }
 }
 
@@ -353,16 +354,18 @@ h1 {
 
   #login-section,
   #player-setup-section {
-    max-width: 350px;
-    margin: 60px auto;
+    max-width: 90%;
+    padding: 25px;
+    margin: 50px auto;
   }
 
-  .sidebar {
-    width: 180px;
+  #login-form input,
+  #login-form button {
+    font-size: 1em;
   }
 
-  .game-content {
-    max-width: 100%;
+  #game-section {
+    flex-direction: row;
   }
 
   #question-image {
@@ -372,8 +375,8 @@ h1 {
 
 /* Large screens (min-width: 1024px) */
 @media (min-width: 1024px) {
-  header {
-    padding: 30px;
+  header h1 {
+    font-size: 2em;
   }
 
   #login-section,
@@ -381,11 +384,7 @@ h1 {
     max-width: 450px;
   }
 
-  .sidebar {
-    width: 200px;
-  }
-
-  .game-content {
-    padding: 30px;
+  #question-image {
+    max-height: 300px; /* Slightly larger for desktops */
   }
 }
