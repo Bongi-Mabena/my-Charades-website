@@ -1,328 +1,158 @@
-/* General Styles */
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: url('flag.png') no-repeat center center fixed;
-  background-size: cover;
-  background-blend-mode: lighten;
-}
-
-header {
-  background-color: #003366;
-  color: #FFD700;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-}
-
-.logo {
-  width: 60px;
-  position: absolute;
-  left: 20px;
-  top: 20px;
-}
-
-h1 {
-  margin: 0;
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Login Section */
-#login-section {
-  max-width: 400px;
-  margin: 80px auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-#login-section h2 {
-  color: #003366;
-  margin-bottom: 20px;
-}
-
-#login-form input {
-  width: 90%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 2px solid #FFD700;
-  border-radius: 8px;
-  font-size: 1em;
-}
-
-#login-form button {
-  width: 95%;
-  padding: 12px;
-  background: #FFD700;
-  color: #003366;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: background 0.3s;
-}
-
-#login-form button:hover {
-  background: #FFC300;
-}
-
-/* Player Setup Section */
-#player-setup-section {
-  max-width: 400px;
-  margin: 80px auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-#player-setup-section h2 {
-  color: #003366;
-  margin-bottom: 20px;
-}
-
-#player-setup-section div {
-  margin-bottom: 15px;
-}
-
-#player-setup-section label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-#player-setup-section input[type="number"] {
-  width: 80%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1em;
-}
-
-#player-names {
-  /* Styles for the player name input fields will go here */
-}
-
-#start-game-btn {
-  padding: 12px 24px;
-  background: #28A745;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: background 0.3s;
-}
-
-#start-game-btn:hover {
-  background: #218838;
-}
-
-/* Game Section */
-#game-section {
-  display: flex;
-  height: calc(100vh - 80px);
-}
-
-.sidebar {
-  width: 220px;
-  background: rgba(0, 51, 102, 0.9);
-  color: #FFD700;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  position: relative;
-}
-
-.sidebar h3 {
-  margin-top: 0;
-  text-align: center;
-  font-size: 1.5em;
-  border-bottom: 2px solid #FFD700;
-  padding-bottom: 10px;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-.sidebar ul li {
-  padding: 12px;
-  margin-bottom: 10px;
-  background: #003366;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-  text-align: center;
-  font-weight: bold;
-}
-
-.sidebar ul li:hover {
-  background: #0055A4;
-  transform: scale(1.05);
-}
-
-#logout-btn {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  margin-top: 30px;
-  padding: 12px;
-  background: #B22222;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: background 0.3s;
-}
-
-#logout-btn:hover {
-  background: #A52A2A;
-}
-
-.game-content {
-  flex: 1;
-  padding: 40px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  position: relative;
-  overflow-y: auto;
-}
-
-#current-topic {
-  color: #003366;
-  font-size: 1.8em;
-  margin-bottom: 30px;
-}
-
-#question-container {
-  margin-top: 20px;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#question-container p {
-  font-size: 1.5em;
-  color: #333;
-}
-
-#next-question {
-  margin-top: 30px;
-  padding: 12px 24px;
-  background: #28A745;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: background 0.3s;
-}
-
-#next-question:hover {
-  background: #218838;
-}
-
-/* Modal Styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  position: relative;
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  border-radius: 12px;
-  animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.close-button {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.close-button:hover {
-  color: #FF0000;
-}
-
-#question-image {
-  width: 100%;
-  height: auto;
-  max-height: 300px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-#question-text {
-  font-size: 1.5em;
-  color: #333;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  #game-section {
+    font-family: Arial, sans-serif;
+    display: flex;
     flex-direction: column;
-  }
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+}
 
-  .sidebar {
+/* Header */
+header {
+    text-align: center;
+    background-color: #fbc02d;
+    padding: 20px;
+    width: 100%;
+}
+
+header h1 {
+    color: #0d47a1;
+    font-size: 2rem;
+}
+
+header p {
+    color: #388e3c;
+}
+
+/* Main Game Area */
+main {
+    flex-grow: 1;
     width: 100%;
     display: flex;
-    justify-content: space-around;
-  }
-
-  .sidebar ul {
-    display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
+}
+
+#game-area {
+    text-align: center;
+}
+
+.player-info {
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    transform: scale(0.7); /* Zoom out by 30% */
+    transition: transform 0.3s ease-in-out;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1565c0;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.bold-tick {
+    font-weight: bold;
+    color: #43a047;
+}
+
+.amount {
+    text-align: right;
+}
+
+@media only screen and (max-width: 600px) {
+  header h1 {
+      font-size: 1.5rem;
   }
 
-  .sidebar ul li {
-    margin-bottom: 0;
-    margin: 5px;
+  button {
+      font-size: 0.9rem;
   }
 
-  .game-content {
-    padding: 20px;
+  .image-container img {
+      width: 100%;
+  }
+
+  table, th, td {
+      font-size: 0.8rem;
+  }
+}
+
+/* For tablets */
+@media only screen and (min-width: 600px) and (max-width: 1200px) {
+  header h1 {
+      font-size: 2rem;
+  }
+
+  button {
+      font-size: 1.1rem;
+  }
+
+  .image-container img {
+      width: 80%;
+  }
+
+  table, th, td {
+      font-size: 1rem;
+  }
+}
+
+/* For desktops */
+@media only screen and (min-width: 1200px) {
+  header h1 {
+      font-size: 2.5rem;
+  }
+
+  button {
+      font-size: 1.2rem;
+  }
+
+  .image-container img {
+      width: 60%;
+  }
+
+  table, th, td {
+      font-size: 1.2rem;
   }
 }
