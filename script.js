@@ -1,3 +1,4 @@
+
 // Handle login
 document.getElementById('login-btn')?.addEventListener('click', function() {
   const username = document.getElementById('username').value;
@@ -130,6 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
       currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length;
       nextQuestionButton.classList.remove('hidden');
 
+      scores[currentPlayerIndex] += 1; // Add point to the current player
+      updateScoreboard(); // Update scoreboard after scoring
+
+      // Rotate to the next player
+      currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // Move to the next player
+      localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save current player index
     }
   }
 
@@ -139,35 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('deviceorientation', (event) => {
     const beta = event.beta; // Detect phone tilting forward or backward
 
-    if (beta >= 80) { 
-      // Tilted forward; trigger scoring and next question
+    if (beta >= 80) { // Adjust the range as needed
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
       }
-      orientationTimeout = setTimeout(() => {
-        scores[currentPlayerIndex] += 1; // Add point to the current player
-        updateScoreboard(); // Update scoreboard after scoring
-        localStorage.setItem('scores', JSON.stringify(scores)); // Save updated scores
-  
-        // Move to the next player
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-        localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save updated player index
-  
-        displayQuestion(); // Load the next question
-      }, 750); // Delay of 750ms
-  
-    } else if (beta <= -40) { 
-      // Tilted backward; skip question without adding points
-      if (orientationTimeout) {
-        clearTimeout(orientationTimeout);
-      }
-      orientationTimeout = setTimeout(() => {
-        // Move to the next player (no points added)
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-        localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save updated player index
-  
-        displayQuestion(); // Load the next question
-      }, 750); // Delay for skipping question
+      orientationTimeout = setTimeout(displayQuestion, 750); // Delay execution by 500ms
     }
   });
 });
