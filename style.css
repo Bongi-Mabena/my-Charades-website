@@ -20,10 +20,10 @@ header {
 }
 
 .logo {
-  width: 80px;
+  width: 60px;
   position: absolute;
-  left: 40px;
-  top: 40px;
+  left: 20px;
+  top: 20px;
 }
 
 h1 {
@@ -38,18 +38,18 @@ h1 {
 
 /* Login Section */
 #login-section {
-  max-width: 600px;
-  margin: 100px auto;
-  padding: 50px;
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
+  border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
 #login-section h2 {
   color: #003366;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 #login-form input {
@@ -328,33 +328,4 @@ h1 {
   .game-content {
     padding: 20px;
   }
-  img {
-  max-width: 70%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-  /* Small screens (max-width: 480px) */
-@media (max-width: 480px) {
-  #game-section { flex-direction: column; }
-  .sidebar { width: 100%; max-width: none; }
-  .game-content { width: 100%; max-width: none; }
-  #question-image { width: 100%; height: auto; max-height: 200px; }
-}
-
-/* Medium screens (max-width: 768px) */
-@media (max-width: 768px) {
-  #game-section { flex-direction: column; }
-  .sidebar { width: 100%; max-width: 180px; }
-  .game-content { width: 100%; max-width: 400px; }
-  #question-image { width: 100%; height: auto; max-height: 250px; }
-}
-
-/* Large screens (min-width: 1024px) */
-@media (min-width: 1024px) {
-  #game-section { flex-direction: row; }
-  .sidebar { width: 220px; }
-  .game-content { width: 600px; }
-  #question-image { width: 100%; height: auto; max-height: 300px; }
-}
 }
