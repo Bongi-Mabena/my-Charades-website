@@ -1,9 +1,12 @@
+
+
 /* General Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   background: url('flag.png') no-repeat center center fixed;
+  /* Assuming flag.png is in the same directory as style.css */
   background-size: cover;
   background-blend-mode: lighten;
 }
@@ -17,10 +20,10 @@ header {
 }
 
 .logo {
-  width: 60px;
+  width: 80px;
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 40px;
+  top: 40px;
 }
 
 h1 {
@@ -33,26 +36,127 @@ h1 {
   display: none;
 }
 
+/* Login Section */
+#login-section {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+#login-section h2 {
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+#login-form input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+#login-form button {
+  width: 95%;
+  padding: 12px;
+  background: #FFD700; /* Gold */
+  color: #003366; /* Dark Blue */
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+#login-form button:hover {
+  background: #FFC300;
+}
+
+/* Player Setup Section */
+#player-setup-section {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+#player-setup-section h2 {
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+#player-setup-section div {
+  margin-bottom: 15px;
+}
+
+#player-setup-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#player-setup-section input[type="number"] {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+#player-names {
+  /* Styles for the player name input fields will go here */
+}
+
+#start-game-btn {
+  padding: 12px 24px;
+  background: #28A745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+#start-game-btn:hover {
+  background: #218838;
+}
+
 /* Game Section */
 #game-section {
   display: flex;
-  flex-wrap: wrap; /* Ensure it wraps on smaller screens */
-  height: auto; /* Dynamic height */
+  height: calc(100vh - 80px); /* Adjusted for header height */
 }
 
 .sidebar {
-  width: 100%; /* Full width on smaller screens */
-  flex: 1 1 100%; /* Occupy full width on mobile */
+  width: 220px;
   background: rgba(0, 51, 102, 0.9); /* Semi-transparent Dark Blue */
   color: #FFD700; /* Gold */
   padding: 20px;
   box-sizing: border-box;
-  margin-bottom: 20px;
+  overflow-y: auto;
+  position: relative; /* To position the logout button */
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.5em;
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 10px;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 20px 0;
 }
 
 .sidebar ul li {
@@ -61,7 +165,33 @@ h1 {
   background: #003366; /* Dark Blue */
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
   text-align: center;
+  font-weight: bold;
+}
+
+.sidebar ul li:hover {
+  background: #0055A4;
+  transform: scale(1.05);
+}
+
+#logout-btn {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  margin-top: 30px;
+  padding: 12px;
+  background: #B22222; /* Firebrick Red */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+#logout-btn:hover {
+  background: #A52A2A;
 }
 
 .game-content {
@@ -69,68 +199,133 @@ h1 {
   padding: 40px;
   text-align: center;
   background: rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow-y: auto;
 }
 
 #current-topic {
   color: #003366;
   font-size: 1.8em;
+  margin-bottom: 30px;
 }
 
-/* Image question styles */
+#question-container {
+  margin-top: 20px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#question-container p {
+  font-size: 1.5em;
+  color: #333;
+}
+
+#next-question {
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: #28A745; /* Green */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+#next-question:hover {
+  background: #218838;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  border-radius: 12px;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-button:hover {
+  color: #FF0000;
+}
+
 #question-image {
-  width: 50%; /* Default width of 50% of the container */
-  height: auto; /* Maintain the aspect ratio */
-  max-width: 400px; /* Set a max width */
-  max-height: 250px; /* Set a max height */
+  width: 50%;
+  height: auto;
+  max-height: 150px;
   border-radius: 8px;
   margin-bottom: 20px;
-  object-fit: contain; /* Ensures the image fits within the container without distortion */
 }
 
-/* Scoreboard Styles */
-#scoreboard {
-  margin-top: 20px;
-  background: #f7f7f7;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: left;
-}
-
-#scoreboard ul {
-  list-style: none;
-  padding: 0;
+#question-text {
+  font-size: 1.5em;
+  color: #333;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  #game-section {
+    flex-direction: column;
+  }
+
   .sidebar {
-    flex: 1 1 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sidebar ul li {
+    margin-bottom: 0;
+    margin: 5px;
   }
 
   .game-content {
     padding: 20px;
-  }
-
-  /* Adjust image size for smaller devices */
-  #question-image {
-    width: 80%; /* Increase width for smaller screens */
-    max-height: 200px; /* Slightly reduce the max height */
-  }
-}
-
-@media (orientation: landscape) {
-  /* For landscape mode on mobile or tablets */
-  #game-section {
-    flex-direction: column; /* Stack sidebar and content vertically in landscape */
-  }
-
-  .sidebar {
-    flex: none; /* Sidebar will not take the full width in landscape mode */
-    width: 100%; /* Sidebar at the top in landscape mode */
-  }
-
-  #question-image {
-    width: 60%; /* Adjust image size for landscape view */
-    max-height: 150px; /* Limit the height even more in landscape */
   }
 }
