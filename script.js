@@ -1,54 +1,6 @@
-// Handle login
-document.getElementById('login-btn')?.addEventListener('click', function() {
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-
-  // Hardcoded credentials
-  const validUsername = "user1";
-  const validPassword = "pass01";
-
-  // Check credentials
-  if (username === validUsername && password === validPassword) {
-    window.location.href = 'player_setup.html'; // Redirect to player setup page on success
-  } else {
-    alert('Invalid username or password. Please try again.'); // Alert for failed login
-  }
-});
-
-// Handle starting game
-document.getElementById('start-game-btn')?.addEventListener('click', function() {
-  const playerNameInputs = document.querySelectorAll('.player-name-input');
-  const players = Array.from(playerNameInputs).map(input => input.value.trim()).filter(name => name !== '');
-
-  if (players.length > 0 && players.length <= 3) {
-    localStorage.setItem('players', JSON.stringify(players));
-    localStorage.setItem('currentPlayerIndex', 0);
-    localStorage.setItem('scores', JSON.stringify(new Array(players.length).fill(0)));
-    window.location.href = 'topic_selection.html';
-  } else {
-    alert('Please enter 1 to 3 player names.');
-  }
-});
-
-// Execute when the DOM is fully loaded for player setup
 document.addEventListener('DOMContentLoaded', () => {
-  const playerNamesContainer = document.getElementById('player-names');
-
-  // Create input fields for player names
-  for (let i = 1; i <= 3; i++) { // Allow up to 3 players
-    const inputDiv = document.createElement('div');
-    inputDiv.innerHTML = `<label for="player${i}">Player ${i}:</label>
-                          <input type="text" id="player${i}" class="player-name-input" placeholder="Enter name" required>`;
-    playerNamesContainer.appendChild(inputDiv);
-  }
-});
-
-// Execute when the DOM is fully loaded for game logic
-document.addEventListener('DOMContentLoaded', () => {
-  const topicsList = document.getElementById('topics-list');
   const currentTopicElement = document.getElementById('current-topic');
   const questionImage = document.getElementById('question-image');
-  const nextQuestionButton = document.getElementById('next-question');
   const scoreboardElement = document.getElementById('scoreboard');
 
   // Images for each topic
@@ -99,26 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load player names and scores from local storage
   const players = JSON.parse(localStorage.getItem('players')) || [];
-  let scores = JSON.parse(localStorage.getItem('scores')) || new Array(players.length).fill(0); //  scores
+  let scores = JSON.parse(localStorage.getItem('scores')) || new Array(players.length).fill(0); // Initialize scores
 
   // Display players and scores
   function updateScoreboard() {
     scoreboardElement.innerHTML = `<h3>Scoreboard</h3><ul>${players.map((player, index) => `<li>${player}: ${scores[index]} points</li>`).join('')}</ul>`;
   }
   updateScoreboard(); // Initial scoreboard display
-
-  // Handle topic selection
-  topicsList?.addEventListener('click', (e) => {
-    if (e.target.tagName === 'LI') {
-      currentTopic = e.target.getAttribute('data-topic');
-      currentTopicElement.textContent = `Current Topic: ${currentTopic.replace('-', ' ')}`;
-      currentQuestionIndex = 0; // Reset question index
-      displayQuestion(); // Show the first question immediately
-    }
-  });
-
-  // Handle "Next Question" button click
-  nextQuestionButton?.addEventListener('click', displayQuestion);
 
   // Function to display the next image in the selected topic
   function displayQuestion() {
@@ -127,48 +66,57 @@ document.addEventListener('DOMContentLoaded', () => {
       questionImage.src = topicImages[currentQuestionIndex];
       questionImage.classList.remove('hidden');
       questionImage.alt = `Image related to ${currentTopic}`;
-      currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length;
-      nextQuestionButton.classList.remove('hidden');
-
+      currentQuestionIndex = (currentQuestionIndex + 1) % topicImages.length; // Loop through images
     }
   }
 
+  // Device orientation handling
   let orientationTimeout = null;
 
-  // Detect device orientation for "face down" motion to trigger next question
   window.addEventListener('deviceorientation', (event) => {
-    const beta = event.beta; // Detect phone tilting forward or backward
+    const beta = event.beta; // Beta is the tilt forward/backward
 
-    if (beta >= 80) { 
-      // Tilted forward; trigger scoring and next question
+    if (beta >= 80) { // Face down
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
       }
+
       orientationTimeout = setTimeout(() => {
-        // Add point to the current player only for forward tilt
-        scores[currentPlayerIndex] += 1; // Add point for the current player
-        updateScoreboard(); // Update scoreboard after scoring
-        localStorage.setItem('scores', JSON.stringify(scores)); // Save updated scores
-  
-        // Move to the next player
+        // Assume the answer was correct and award a point
+        scores[currentPlayerIndex] += 1;
+        alert(`${players[currentPlayerIndex]} gave a correct answer! Point awarded.`);
+        
+        updateScoreboard(); // Update scoreboard after awarding the point
+
+        // Move to the next question and rotate to the next player
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-        localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save updated player index
-  
-        displayQuestion(); // Load the next question
-      }, 750); // Delay of 750ms
-  
-    } else if (beta <= -80) { 
-      // Tilted backward; skip question without adding points
+        localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save current player index
+        displayQuestion();
+      }, 750); // 750ms delay before moving to next question
+    } else if (beta <= 20) { // Face up (incorrect answer scenario)
       if (orientationTimeout) {
         clearTimeout(orientationTimeout);
       }
+
       orientationTimeout = setTimeout(() => {
-        // Move to the next player (no points added for backward tilt)
+        alert(`${players[currentPlayerIndex]} gave an incorrect answer. No points awarded.`);
+
+        // Rotate to the next player without awarding points
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-        localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save updated player index
-  
-        displayQuestion(); // Load the next question
-      }, 750); // Delay for skipping question
+        localStorage.setItem('currentPlayerIndex', currentPlayerIndex); // Save current player index
+        displayQuestion();
+      }, 750); // 750ms delay before moving to next question
+    }
+  });
+
+  // Topic selection handler
+  const topicsList = document.getElementById('topics-list');
+  topicsList?.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI') {
+      currentTopic = e.target.getAttribute('data-topic');
+      currentTopicElement.textContent = `Current Topic: ${currentTopic.replace('-', ' ')}`;
+      currentQuestionIndex = 0; // Reset question index to start fresh
+      displayQuestion(); // Show the first question immediately
     }
   });
 });
